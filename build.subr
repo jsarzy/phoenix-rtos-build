@@ -28,10 +28,13 @@ b_log() {
 	echo -e "\033[1;33m--- $1 ---\033[0m"
 }
 
+b_info() {
+	echo -e "\033[1;37m$1\033[0m"
+}
 
 b_die() {
 	echo -e "\033[1;31mFAILED: $1\033[0m"
 	exit 1
 }
 
-export -f b_log b_install b_die
+export -f b_log b_info b_install b_die

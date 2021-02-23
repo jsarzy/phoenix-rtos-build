@@ -12,6 +12,11 @@
 set -e
 
 b_log "Building phoenix-rtos-kernel"
+if [[ ${KERNEL_TEST_GROUPS} ]]; then
+	b_info "Building Unity kernel test framework"
+	(cd phoenix-rtos-tests && make $MAKEFLAGS $CLEAN unity)
+	b_info "Building kernel with test directories: ${KERNEL_TEST_GROUPS//,/, }"
+fi
 KERNEL_MAKECMDGOALS="install-headers"
 (cd phoenix-rtos-kernel && make $MAKEFLAGS $CLEAN $KERNEL_MAKECMDGOALS all)
 
